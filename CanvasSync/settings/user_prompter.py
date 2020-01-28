@@ -164,7 +164,9 @@ def ask_for_token(domain):
 def ask_for_courses(settings, api):
 
     courses = api.get_courses()
-
+    for name in courses[:]:
+        if not 'course_code' in name:
+            courses.remove(name)
     if settings.use_nicknames: 
         courses = [name[u"name"] for name in courses]
     else:
